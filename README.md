@@ -2,6 +2,22 @@
 
 I recently migrate some projects made in React and Svelte to web components. Here are some of aha moments when porting them to the [Lit library](https://lit.dev).
 
+The list doesn't complete yet as I continue learning more about Lit. Feel free to include your experiences. I hope it helps you when migrating works from popular front-end libraries to Lit.
+
+## Auto close tags
+
+Always include close tags.
+
+```js
+// Does not work
+<custom-spacer />
+<div />
+
+// Work
+<custom-spacer></custom-spacer>
+<div></div>
+```
+
 ## Callback property
 
 If a component provides a callback as a property:
