@@ -31,3 +31,30 @@ _handleMarkAllCompleted() {
   .onMarkAllCompleted=${() => this._handleMarkAllCompleted()}
 />
 ```
+
+The event handlers of native elements works without indicating the full invocation:
+
+```js
+_handleSignIn(e: MouseEvent) {
+  // ...
+}
+
+<button @click=${this._handleSignIn}>Sign in</button>
+```
+
+## SVG slot
+
+SVG elements don't support `slot`.
+
+```js
+@customElement('icon')
+class Icon extends LitElement {
+  render() {
+    return html`
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" height="16" width="16">
+        <slot></slot>
+      </svg>
+    `;
+  }
+}
+```
