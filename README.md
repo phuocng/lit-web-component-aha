@@ -42,6 +42,20 @@ _handleSignIn(e: MouseEvent) {
 <button @click=${this._handleSignIn}>Sign in</button>
 ```
 
+## Conditional rendering
+
+If you don't want to render a certain part based on given condition, then remember to return an empty string (''), or `null`.
+
+```js
+// Does not work
+// You will see `false` when inspecting element if the condition doesn't happen
+// causing a blank space on the UI
+${isLoggedIn && html`Only logged in users can see`}
+
+// Work
+${isLoggedIn ? html`Only logged in users can see` : ''}
+```
+
 ## SVG slot
 
 SVG elements don't support `slot`.
@@ -49,6 +63,7 @@ SVG elements don't support `slot`.
 ```js
 @customElement('icon')
 class Icon extends LitElement {
+  // Does not work
   render() {
     return html`
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" height="16" width="16">
