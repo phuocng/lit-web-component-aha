@@ -72,6 +72,44 @@ ${isLoggedIn && html`Only logged in users can see`}
 ${isLoggedIn ? html`Only logged in users can see` : ''}
 ```
 
+## Disabled attribute
+
+`disabled="false"` isn't a valid attribute declaration. If you set it with a `button`, then the `click` event handler won't be triggered.
+
+```js
+_handleClickSignIn() {
+  // ...
+}
+
+<button disabled="false" @click=${this._handleClickSignIn}>Sign in</button>
+```
+
+In most cases, the value of `disabled` attribute is determined by a given condition:
+
+```js
+// Does not work if the condition doesn't match
+<button 
+  disabled=${userNameEmpty || passwordEmpty}
+  @click={...}
+>
+  ...
+</button>
+```
+
+Instead, use the `ifDefined` directive:
+
+```js
+// Work
+import { ifDefined } from 'lit/directives/if-defined.js';
+
+<button
+  ?disabled=${ifDefined(isButtonDisabled ? true : undefined)}
+  @click={...}
+>
+  ...
+</button>
+```
+
 ## SVG slot
 
 SVG elements don't support `slot`.
