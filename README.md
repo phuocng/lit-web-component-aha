@@ -142,15 +142,16 @@ html {
 }
 ```
 
-Using the `em` unit fixes the issue. The unit should be used not only for font size, but also for spacing (`padding`, `margin`).
+Using the `em` unit fixes the issue. The unit should be used not only for font size, but also for spacing (`padding`, `margin`), size (`height`, `width`).
 
-```css
+```js
 // Do not
 @customElement('kit-button')
 export class KitButton extends LitElement {
   static styles = css`
-    :host {
-      font-size: 1rem;
+    .kit-button {
+      width: 2rem;
+      height: 2rem;
     }
   }
 }
@@ -160,7 +161,11 @@ export class KitButton extends LitElement {
 export class KitButton extends LitElement {
   static styles = css`
     :host {
-      font-size: 1em;
+      font-size: 16px;
+    }
+    .kit-button {
+      height: 2em;
+      width: 2em;
     }
   }
 }
