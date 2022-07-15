@@ -127,3 +127,41 @@ class Icon extends LitElement {
   }
 }
 ```
+
+## Use em instead of rem unit
+
+The `rem` unit applies the root styles which are defined by the `html` element. The most popular issue that I encounted is the web component font size is small in comparison to the containing page:
+
+```css
+// The containing page
+body {
+  font-size: 1.5rem;
+}
+html {
+  font-size: 62.5%;
+}
+```
+
+Using the `em` unit fixes the issue. The unit should be used not only for font size, but also for spacing (`padding`, `margin`).
+
+```css
+// Do not
+@customElement('kit-button')
+export class KitButton extends LitElement {
+  static styles = css`
+    :host {
+      font-size: 1rem;
+    }
+  }
+}
+
+// Do
+@customElement('kit-button')
+export class KitButton extends LitElement {
+  static styles = css`
+    :host {
+      font-size: 1em;
+    }
+  }
+}
+```
